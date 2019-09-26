@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "react": "^16.9.0",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.9.0",
-    "react-scripts": "3.1.2"
+    "react-scripts": "3.1.2",
+    "react-with-addons": "^0.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

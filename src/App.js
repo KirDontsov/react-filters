@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Toolbar from "./Toolbar";
+import Portfolio from "./Portfolio";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.filters = props.filters;
+    this.projects = props.projects;
+    this.state = { selected: "All" };
+  }
+  updateSelected(filter) {
+    this.setState({ selected: filter });
+  }
+  render() {
+    console.log(this.state.selected);
+    return (
+      <div>
+        <Toolbar
+          filters={this.filters}
+          selected={this.state.selected}
+          onSelectFilter={this.updateSelected.bind(this)}
+        />
+        <Portfolio
+          projects={
+            this.state.selected === "All"
+              ? this.projects
+              : this.projects.filter(
+                  (project) => project.category === this.state.selected
+                )
+          }
+        />
+      </div>
+    );
+  }
 }
-
-export default App;
